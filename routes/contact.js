@@ -27,7 +27,7 @@ router.post('/insert',function(req,res,next) {
 			console.log("1 document inserted");
 			db.close();
 		});
-		res.send(req.body);
+		res.send("Create Success !!");
 	});
 });
 
