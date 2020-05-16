@@ -3,7 +3,7 @@ const app =express();
 const bodyParser = require('body-parser');
 var multer = require('multer');
 var upload= multer();
-
+var mongoose = require('mongoose');
 
 //API documentation
 const swaggerJsDoc=require('swagger-jsdoc');
@@ -71,6 +71,45 @@ app.use('/apidocs',swaggerUi.serve,swaggerUi.setup(swaggerDocs));
  *    responses:
  *      '200':
  *        description: All Product in database
+ * /user/register:
+ *   post:
+ *    description: Create new user in the database
+ *    parameters:
+ *    - name: name
+ *      description: Please enter name
+ *      in: formData
+ *      required: true
+ *      type: string
+ *    - name: gmail
+ *      description: Please enter gmail
+ *      in: formData
+ *      required: true
+ *      type: string
+ *    - name: password
+ *      description: Please enter password
+ *      in: formData
+ *      required: true
+ *      type: string
+ *    responses:
+ *      '200':
+ *        description: Create new account
+ * /user/login:
+ *   post:
+ *    description: Login
+ *    parameters:
+ *    - name: gmail
+ *      description: Please enter name
+ *      in: formData
+ *      required: true
+ *      type: string
+ *    - name: password
+ *      description: Please enter gmail
+ *      in: formData
+ *      required: true
+ *      type: password
+ *    responses:
+ *      '200':
+ *        description: return token if login success !
  */
 
 
@@ -82,7 +121,7 @@ app.use((req,res,next)=>{
     next();
 });
 
-app.use(bodyParser.urlencoded({extend:true}));
+app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(upload.array());
 
@@ -101,6 +140,12 @@ app.use((req,res,next)=>{
     next();
 });
 
+const url = 'mongodb+srv://we00054643:1Licynduy@shopping-nbfge.mongodb.net/Shopping?retryWrites=true&w=majority';
+
+mongoose
+    .connect(url, {useNewUrlParser: true, useUnifiedTopology: true})
+    .then(() => console.log("Mongodb connected"))
+    .catch(err => console.log(err))
 
 
 module.exports = app;
