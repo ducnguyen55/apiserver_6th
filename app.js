@@ -98,18 +98,18 @@ app.use('/apidocs',swaggerUi.serve,swaggerUi.setup(swaggerDocs));
  *    description: Login
  *    parameters:
  *    - name: gmail
- *      description: Please enter name
+ *      description: Please enter gmail
  *      in: formData
  *      required: true
  *      type: string
  *    - name: password
- *      description: Please enter gmail
+ *      description: Please enter password
  *      in: formData
  *      required: true
- *      type: password
+ *      type: string
  *    responses:
  *      '200':
- *        description: return token if login success !
+ *        description: Return token
  */
 
 

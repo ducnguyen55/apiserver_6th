@@ -9,7 +9,7 @@ const User = require('../models/user');
 
 process.env.SECRET_KEY='secret';
 
-exports.register = (req,res)=> {
+exports.register = (req,res) => {
 	const today = new Date();
 	const UserData = {
 		full_name: req.body.full_name,
